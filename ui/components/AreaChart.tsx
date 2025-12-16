@@ -1,0 +1,38 @@
+"use client";
+
+import React from "react";
+import * as SubframeCore from "@subframe/core";
+import * as SubframeUtils from "../utils";
+
+interface AreaChartRootProps
+  extends React.ComponentProps<typeof SubframeCore.AreaChart> {
+  stacked?: boolean;
+  className?: string;
+}
+
+const AreaChartRoot = React.forwardRef<
+  React.ElementRef<typeof SubframeCore.AreaChart>,
+  AreaChartRootProps
+>(function AreaChartRoot(
+  { stacked = false, className, ...otherProps }: AreaChartRootProps,
+  ref
+) {
+  return (
+    <SubframeCore.AreaChart
+      className={SubframeUtils.twClassNames("h-80 w-full", className)}
+      ref={ref}
+      stacked={stacked}
+      colors={[
+        "#737373",
+        "#e5e5e5",
+        "#262626",
+        "#d4d4d4",
+        "#404040",
+        "#a3a3a3",
+      ]}
+      {...otherProps}
+    />
+  );
+});
+
+export const AreaChart = AreaChartRoot;
